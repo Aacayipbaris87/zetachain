@@ -1,0 +1,16 @@
+> +    uint256 public zetaFee;
++    /// @notice Maximum zeta fee for transaction.
++    uint256 immutable public zetaMaxFee;
++    /// @notice Zeta ERC20 token 
++    IERC20 immutable public zeta;
++    /// @notice Mapping of whitelisted token => true/false
++    mapping(IERC20 => bool) public whitelisted;
++    
++    event Paused(address sender);
++    event Unpaused(address sender);
++    event Whitelisted(IERC20 indexed asset);
++    event Unwhitelisted(IERC20 indexed asset);
++    event Deposited(bytes recipient, IERC20 indexed asset, uint256 amount, bytes message);
++    event Withdrawn(address indexed recipient, IERC20 indexed asset, uint256 amount);
++
++    constructor(address _TSSAddress, address _TSSAddressUpdater, uint256 _zetaFee, uint256 _zetaMaxFee, IERC20 _zeta) {       
